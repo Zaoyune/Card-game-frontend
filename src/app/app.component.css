@@ -1,0 +1,127 @@
+/* Add this to your styles.css or styles.scss file */
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  margin: 10px; /* Adjust the margin as needed */
+  border: 1px solid #ccc; /* Add border for better visibility */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out; /* Add transition for smooth animation */
+}
+.flipped .card-back {
+   transform: rotateY(180deg);
+ }
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+  /*background: url('/src/assets/poker.png') center center no-repeat;*/
+  background-size: cover;
+  width: 100%;  /* Ensure the back image covers the entire card*/
+  height: 100%; /* Ensure the back image covers the entire card*/
+  backface-visibility: hidden; /* Hide the backface for smoother transition*/
+}
+
+
+.card img, .card-back {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover the entire space */
+  backface-visibility: hidden;
+}
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+  /*background: url('/src/assets/poker.png') center center no-repeat;*/
+  background-size: cover;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+
+/************************************************************************/
+/* Add this to your component's styles file (e.g., your-component.component.scss) */
+
+.button-container {
+  text-align: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.poker-button {
+  background-color: #4CAF50; /* Green background color */
+  border: none; /* Remove border */
+  color: white; /* White text color */
+  padding: 15px 32px; /* Padding for the button */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px; /* Add rounded corners */
+}
+
+.poker-button:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line if there are many */
+}
+
+.card {
+  width: 100px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  margin: 10px; /* Adjust the margin as needed */
+  border: 1px solid #ccc; /* Add border for better visibility */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out; /* Add transition for smooth animation */
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover the entire space */
+  backface-visibility: hidden;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+/**********************button poker*********************/
+/* Style du bouton */
+.poker-button {
+  padding: 10px 20px; /* Ajustez le rembourrage selon vos besoins */
+  background-color: #3498db; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Supprime la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de la main lors du survol */
+
+  /* Ombre pour donner une dimension */
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
+
+  /* Transition pour un effet de survol en douceur */
+  transition: background-color 0.3s;
+}
+
+/* Changement de couleur lors du survol */
+.poker-button:hover {
+  background-color: #2980b9;
+}

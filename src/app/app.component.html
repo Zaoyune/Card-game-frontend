@@ -1,0 +1,93 @@
+<!-- Generer ordre aleatoire -->
+<div class="button-container">
+  <button class="poker-button" (click)="GenererOrdreAleatoire()">Generer un ordre aléatoire</button>
+</div>
+<ng-container *ngIf="carteAleatoire$ | async as result" [ngSwitch]="result.dataState">
+  <ng-container *ngSwitchCase="CardStateEnum.LOADING" >
+    <div class="card-container" style="padding:2%" >
+      Loading.......
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="CardStateEnum.ERROR" >
+    <div class="alert-danger">
+      {{result.errorMessage}}
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="CardStateEnum.LOADED" >
+    <div class="container" *ngIf="carteAleatoire$">
+      <div class="card-container">
+        <div *ngFor="let card of result.data?.randomValues"  class="card">
+       <img [src]="getValeurCouleurImageUrl(card)"  />
+        </div>
+      </div>
+      <div class="card-container">
+        <div *ngFor="let card of result.data?.randomColors"  class="card">
+          <img [src]="getValeurCouleurImageUrl(card)"  />
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<!-- Tirer main -->
+<div class="button-container">
+  <button *ngIf="TirerButton" class="poker-button" (click)="TirerMain()">Mélanger les cartes</button>
+</div>
+<ng-container *ngIf="cartes$ | async as result" [ngSwitch]="result.dataState">
+  <ng-container *ngSwitchCase="CardStateEnum.LOADING" >
+    <div class="card-container" style="padding:2%" >
+      Loading.......
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="CardStateEnum.ERROR" >
+    <div class="alert-danger">
+      {{result.errorMessage}}
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="CardStateEnum.LOADED" >
+    <div class="container" *ngIf="carteAleatoire$">
+      <div class="card-container">
+        <div *ngFor="let card of result.data" class="card" [class.flipped]="card.flipped" (click)="toggleCardFlip(card)">
+          <!-- Front of the card (image) -->
+          <img *ngIf="!card.flipped" [src]="getImageUrl(card)" alt="{{card.valeur}} of {{card.couleur}}" />
+
+          <!-- Back of the card (image) -->
+          <div class="card-back" *ngIf="card.flipped">
+            <img src="assets/poker.png" alt="Back of the card" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<!-- Trier main -->
+<div class="button-container">
+  <button *ngIf="TrierButton" class="poker-button" (click)="TrierMain()">Trier les cartes</button>
+</div>
+<ng-container *ngIf="cartesTries$ | async as result" [ngSwitch]="result.dataState">
+  <ng-container *ngSwitchCase="CardStateEnum.LOADING" >
+    <div class="card-container" style="padding:2%" >
+      Loading.......
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="CardStateEnum.ERROR" >
+    <div class="alert-danger">
+      {{result.errorMessage}}
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="CardStateEnum.LOADED" >
+    <div class="container" *ngIf="carteAleatoire$">
+      <div class="card-container">
+
+        <div *ngFor="let card of result.data" class="card" [class.flipped]="card.flipped" (click)="toggleCardFlip(card)">
+          <!-- Front of the card (image) -->
+          <img *ngIf="!card.flipped" [src]="getImageUrl(card)" alt="{{card.valeur}} of {{card.couleur}}" />
+
+          <!-- Back of the card (image) -->
+          <div class="card-back" *ngIf="card.flipped">
+            <img src="assets/poker.png" alt="Back of the card" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
